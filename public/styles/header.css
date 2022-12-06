@@ -1,0 +1,13 @@
+/* Header - avatar and user name at the top of the page but below the nav bar */
+
+header {
+  height: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  background-color: #F6F4F1;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
