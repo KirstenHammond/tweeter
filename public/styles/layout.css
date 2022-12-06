@@ -14,12 +14,41 @@ html {
  * Global layout stuff
  */
 
+* {
+  font-family: 'Source Sans Pro', sans-serif
+}
+
 body {
   color: #545149;
-  background-color: #f4f1ec;
+  background-color: #F6F4F1;
   font-size: 24px;
+  width: 100%;
 }
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
+ for tweets display. check order, use flex reverse if needed
+ justify content on the vertical
+ align items horizontal
+
+ parent (aka container)
+ display: flex
+ flex directoion: column
+ justify content: space around 
+ align items center
+ flex-wrap: wrap (to wrap excess width to keep items contained in the container)
+ align-content: space-around (only use with flex wrap)
+
+ children
+ to select specific order for indiv items. default value of 0
+ order: 1 (will push item to the end because all other have 0 and will come first. -1 will make it first)
+ flex-grow: will stretch out indiv items 
  */
+
+ 
