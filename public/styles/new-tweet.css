@@ -34,6 +34,10 @@ textarea:focus, input:focus{
   font-size: 80%;
 }
 
+.counter.negative-count {
+  color: red;
+}
+
 button {
   background-color: #545149;
   color: #F6F4F1;
