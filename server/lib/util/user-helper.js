@@ -26,7 +26,8 @@ module.exports = {
       const suffix = Math.round(Math.random() * 100);
       userHandle += suffix;
     }
-   
+   //what is the else condition in the two above?
+
     const avatars = {
     
       Female: ["https://i.imgur.com/nlhLi3I.png","https://i.imgur.com/z5LNkkB.png","https://i.imgur.com/v0JXau2.png","https://i.imgur.com/lRUnDgU.png", "https://i.imgur.com/3GvwNBf.png"],
