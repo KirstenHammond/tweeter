@@ -1,0 +1,46 @@
+/* CSS for submitting a new tweet */
+
+form {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 1em;
+}
+
+#tweet-text {
+  width: 100%;
+  background-color: #F6F4F1;
+  border: none;
+  border-bottom: 4px solid #545149;
+  font-weight: bold;
+  font-size: 80%;
+  resize: none;
+  opacity: 1;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+  color: #545149;
+}
+
+.tweet-count-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5em;
+}
+
+.counter {
+  font-family: "Bungee", sans-serif;
+  font-size: 80%;
+}
+
+button {
+  background-color: #545149;
+  color: #F6F4F1;
+  font-family: "Bungee", sans-serif;
+  width: 20%;
+  font-size: 80%;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  border: none;
+}
