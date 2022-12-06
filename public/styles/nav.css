@@ -1,0 +1,23 @@
+/* Nav CSS for header containing Tweeter logo and "Create New Tweet" prompt */
+
+nav {
+  background-color: #e1ad01;
+  position: fixed;
+  color: black;
+  height: 120px;
+  width: 100%;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav > span {
+  font-family: "Bungee", sans-serif;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
