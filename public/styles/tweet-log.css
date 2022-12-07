@@ -1,11 +1,11 @@
 /* CSS for handling historic tweet logs */
 
-.log-container {
+article {
   border: 0.17em solid #545149;
   margin-top: 0.5em;
 }
 
-.log-container:hover{
+article:hover{
   box-shadow: 0.4em 0.4em rgb(177, 175, 175);
 }
 
@@ -21,7 +21,7 @@
 }
 
 header > img{
-width: 30px;
+width: 40px;
 }
 
 .log-username {
