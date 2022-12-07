@@ -1,0 +1,64 @@
+/* CSS for handling historic tweet logs */
+
+.log-container {
+  border: 0.17em solid #545149;
+  margin-top: 0.5em;
+}
+
+.log-container:hover{
+  box-shadow: 0.4em 0.4em rgb(177, 175, 175);
+}
+
+.tweet-header {
+  width: 95%;
+  margin: 0.5em auto;
+  display: flex;
+  justify-content: start;
+  font-size: 80%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.log-avatar{
+object-fit: cover;
+}
+
+.log-username {
+  flex-grow: 4;
+}
+
+.handle {
+  color: rgb(177, 175, 175)
+}
+
+.tweet-content {
+  border-bottom: 0.17em solid #545149;
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 80%;
+}
+
+.tweet-footer {
+  width: 95%;
+  margin: 0 auto;
+  font-size: 60%;
+  display: flex;
+  justify-content: start;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.days-ago {
+  flex-grow: 0.95;
+}
+
+.fa-solid{
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+.fa-solid:hover {
+  color: #1B3A44;
+}
