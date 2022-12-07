@@ -1,7 +1,7 @@
 /* Header - avatar and user name at the top of the page but below the nav bar */
 
-body > header {
-  height: 540px;
+body>header {
+  height: 520px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,6 +11,7 @@ body > header {
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
 }
 
-username {
-  margin: 0.4em;
+h2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
