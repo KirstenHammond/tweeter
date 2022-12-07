@@ -12,9 +12,12 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
-nav > span {
+
+nav>span {
   font-family: "Bungee", sans-serif;
-  font-size: 150%;
+  font-size: 160%;
+  align-self: end;
+  padding-bottom: 0.8em;
 }
 
 .right-side {
