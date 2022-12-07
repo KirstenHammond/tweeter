@@ -14,21 +14,25 @@
   margin: 0.5em auto;
   display: flex;
   justify-content: start;
+  
   font-size: 80%;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
 
-.log-avatar{
-object-fit: cover;
+header > img{
+width: 30px;
 }
 
 .log-username {
   flex-grow: 4;
+  align-self: center;
+  padding-left: 0.4em;
 }
 
 .handle {
-  color: rgb(177, 175, 175)
+  color: rgb(177, 175, 175);
+  align-self: center;
 }
 
 .tweet-content {
