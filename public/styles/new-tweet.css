@@ -11,7 +11,7 @@ form {
   width: 100%;
   background-color: #F6F4F1;
   border: none;
-  border-bottom: 4px solid #545149;
+  border-bottom: 0.2em solid #545149;
   font-weight: bold;
   font-size: 80%;
   resize: none;

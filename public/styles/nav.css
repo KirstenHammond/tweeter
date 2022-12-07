@@ -14,6 +14,7 @@ nav {
 }
 nav > span {
   font-family: "Bungee", sans-serif;
+  font-size: 150%;
 }
 
 .right-side {
