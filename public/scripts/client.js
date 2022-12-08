@@ -3,48 +3,14 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+let noHack = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
-/* 
-Used for setting up createTweetElement
 
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
-}; */
-
-//Hardcoded for now until AJAX connetion made
-const dataArray = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
+//CREATE AND RENDER TWEET ELEMENT------------------------------------------------------------------------------
 //Returns HTML text using key value pairs in each individual tweet
 const createTweetElement = function (tweet) {
   return `
@@ -56,11 +22,11 @@ const createTweetElement = function (tweet) {
     </header>
     
     <main class="tweet-content">
-      <strong>${tweet.content.text}</strong>
+      <strong>${noHack(tweet.content.text)}</strong>
     </main>
 
     <footer class="tweet-footer">
-      <span class="days-ago">${tweet.created_at}</span> 
+      <span class="days-ago">${timeago.format(tweet.created_at)}</span> 
       <i class="fa-solid fa-flag"></i>
       <i class="fa-solid fa-retweet"></i>
       <i class="fa-solid fa-heart"></i> 
@@ -70,14 +36,61 @@ const createTweetElement = function (tweet) {
   `;
 };
 
-const renderTweets = function(tweets) {
-
+//Takes in an array of objects and parses each tweet through the createElement function
+const renderTweets = function (tweets) {
   $(document).ready(function () {
+    $('.log-container').empty(); //to empty container so its starting with a fresh slate each time
     for (let tweet of tweets) {
-      $('.log-container').append(createTweetElement(tweet));//Calling createTweetElement against each object in the array and appending the log-container with each html script
+      $('.log-container').prepend(createTweetElement(tweet));//Calling createTweetElement against each object in the array and appending the log-container with each html script
     }
   })
 
 }
 
-renderTweets(dataArray); 
+
+//OVERRIDE SUBMIT FORM USING AJAX-----------------------------------------------------------------
+
+$(document).ready(function () {
+
+  $('.error').hide();
+  //Sending tweets to server and blocking redirect
+  $('.tweet-submission').submit(function (event) {
+    event.preventDefault();
+
+    const inputData = $('#tweet-text').val();
+    if (inputData === "" || inputData === null) {
+      $('.error').slideUp('fast');
+      $('.error').html("Please enter text into the field!").slideDown('fast');
+    } else if (inputData.length > 140) {
+      $('.error').slideUp('fast');
+      $('.error').html("Tweet character limit is 140!").slideDown('fast');
+    } else {
+      $('.error').slideUp('fast');
+      const form = $(this).serialize();
+      $.ajax({
+        url: '/tweets',
+        method: 'POST',
+        data: form,
+        success: function () {
+          $('#tweet-text').val('');
+          loadTweets(); //to add the new tweet to the top of the page after clicking submit
+        }
+      });
+    };
+  })
+
+  //Fetching the tweets and rendering them when the page is first loaded. Think of this as seperate to the request above.
+  const loadTweets = function () {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      dataType: 'json',
+    })
+      .then(function (tweets) {
+        renderTweets(tweets);
+      })
+
+  }
+  loadTweets(); //without this, the home page is blank and then when button is pressed all tweets appear
+
+})
