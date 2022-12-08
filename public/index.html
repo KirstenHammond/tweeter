@@ -32,8 +32,10 @@
   <link rel="stylesheet" href="/styles/tweet-log.css" type="text/css" />
 
   <!-- Timeago for displaying "n days ago"-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- Font Awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
@@ -54,37 +56,42 @@
   <!-- Top nav bar (fixed) -->
   <nav>
     <span>tweeter</span>
-    <div class="right-side">
+    <button type="button" class="nav-button">
       <span><strong>Write</strong> a new tweet</span>
-      <i class="fa-solid fa-angles-down"></i>
-    </div>
+      <i class="fa-solid fa-angles-down fa-bounce"
+        style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0;"></i>
+    </button>
   </nav>
 
+
   <!-- User avatar/header-->
-  <header>
+<header>
     <div class="avatar">
       <img src="/images/profile-hex.png">
     </div>
     <br>
     <div class="username">
-      <h2>Your Name</h2>
+      <h2>Kirsten Hammond</h2>
     </div>
   </header>
+
+<button type="button" class="scroll-top-button"><i class="fa-solid fa-angles-up"></i></button>
 
   <!-- Page-specific (main) content here -->
   <main class="container">
     <section class="new-tweet">
       <div class="error">
+        <strong></strong>
       </div>
       <form class="tweet-submission" method="POST" action="/tweets/">
         <!-- <label for="tweet-text">What are you humming about?</label>  -->
         <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
         <div class="tweet-count-buttons">
-          <button type="submit">Tweet</button>
+          <button class="submit-new-tweet-button" type="submit">Tweet</button>
           <output name="counter" class="counter" for="tweet-text">
             140
           </output>
-          
+
         </div>
       </form>
     </section>
