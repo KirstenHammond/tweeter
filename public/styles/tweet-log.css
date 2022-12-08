@@ -65,4 +65,5 @@ width: 40px;
 
 .fa-solid:hover {
   color: #1B3A44;
+  cursor: pointer;
 }
