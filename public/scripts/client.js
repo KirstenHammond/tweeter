@@ -51,6 +51,23 @@ const renderTweets = function (tweets) {
 //OVERRIDE SUBMIT FORM USING AJAX-----------------------------------------------------------------
 
 $(document).ready(function () {
+  
+  $('.scroll-top-button').hide();
+  $(window).scroll(function(){
+    $('.scroll-top-button').fadeIn();
+  })
+//try exclude with condition this fade in when scroll up button is clicked
+  $('.scroll-top-button, .nav-button').click(function () {
+    $('#tweet-text').focus();
+    let position = $('.new-tweet').offset().top;    
+    let navHeight = $('nav').outerHeight();
+    let headerHeight = $('header').outerHeight();
+    $('html').animate({
+      scrollTop: position - navHeight - headerHeight
+    }, '1000');
+  });
+  $('.scroll-top-button').hide();
+//Might have to create seperate function to fade out button as it is registering the scroll up as a scroll and not hiding after
 
   $('.error').hide();
   //Sending tweets to server and blocking redirect
@@ -60,10 +77,10 @@ $(document).ready(function () {
     const inputData = $('#tweet-text').val();
     if (inputData === "" || inputData === null) {
       $('.error').slideUp('fast');
-      $('.error').html("Please enter text into the field!").slideDown('fast');
+      $('.error').html(`<strong>You got nothing to say?</strong>`).slideDown('fast');
     } else if (inputData.length > 140) {
       $('.error').slideUp('fast');
-      $('.error').html("Tweet character limit is 140!").slideDown('fast');
+      $('.error < strong').html(`<strong>Ok now you're saying too much</strong>`).slideDown('fast');
     } else {
       $('.error').slideUp('fast');
       const form = $(this).serialize();
