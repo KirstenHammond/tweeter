@@ -7,6 +7,12 @@ form {
   padding-top: 1em;
 }
 
+.error {
+  background-color: #FFCCCC;
+  font-size: 1.5rem;
+  padding: 0.8rem;
+}
+
 #tweet-text {
   width: 100%;
   background-color: #F6F4F1;
