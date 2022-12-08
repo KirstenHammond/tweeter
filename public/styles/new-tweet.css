@@ -9,7 +9,7 @@ form {
 
 .error {
   background-color: #FFCCCC;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding: 0.8rem;
 }
 
@@ -44,8 +44,8 @@ textarea:focus, input:focus{
   color: red;
 }
 
-button {
-  background-color: #545149;
+.submit-new-tweet-button {
+  background-color: #1B3A44;
   color: #F6F4F1;
   font-family: "Bungee", sans-serif;
   width: 20%;
@@ -53,4 +53,9 @@ button {
   padding-top: 0.25em;
   padding-bottom: 0.25em;
   border: none;
+}
+
+.submit-new-tweet-button:hover{
+  cursor: pointer;
+  box-shadow: 0.3rem 0.3rem rgb(177, 175, 175);
 }
