@@ -31,6 +31,24 @@ body {
   margin: 0 auto;
 }
 
+.scroll-top-button{
+  position: fixed;
+  color:#F6F4F1;
+  font-size: 1.25rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 7%;
+  height: 7%;
+  border: none;
+  border-radius: 50%;
+  background-color: #1B3A44;
+}
+.scroll-top-button:hover{
+  cursor: pointer;
+}
+.scroll-top-button > .fa-solid:hover{
+color: #e1ad01;
+}
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
