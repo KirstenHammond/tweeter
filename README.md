@@ -16,3 +16,13 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+To do
+text contained on resizing
+-em to rem
+-use id for unique features
+-add notes
+-stretch improve logic for scroll show hide
+-dry up js code
+-readme
+
