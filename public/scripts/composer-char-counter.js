@@ -1,36 +1,28 @@
-//For implementing character count
+//For implementing character count in new tweet submission
 
 $(document).ready(function () {
   const maxLength = 140;
-  
+
   //Find the length of the input
-  $('#tweet-text').keyup(function() {
+  $('#new-tweet-content').keyup(function () {
     let currentLength = $(this).val().length;
     let remaining = maxLength - currentLength;
-    //$('.counter').html(remaining);
 
-  //Traverse up and then back down to find .counter
-  //section/form/textarea + div/button+ counter
+    //Traverse up and then back down to find .counter
     let $parent = $(this).parent();
     let counter = $parent.find('.counter');
-    counter.each(function() {
-      //console.log("this", $(this));
+    counter.each(function () {
+      //Update the counter for each keyup
       $(this).html(remaining);
 
-      if($(this).html() < 0) {
+      //Negative-count has red styling, so the class is removed if the number is positive
+      if ($(this).html() < 0) {
         $(this).addClass('negative-count');
       } else {
         $(this).removeClass('negative-count')
       }
     })
-
-  //Conditional checking for negative value to add class and turn red
-    /* if (remaining < 0) {
-      $(this).addClass($('.counter').html())
-    } */
   })
   return;
 });
-
-//SCROLL TO TOP FUNCTION---------------------------------------------------------------------------
 

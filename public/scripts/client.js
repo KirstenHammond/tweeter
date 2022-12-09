@@ -3,12 +3,12 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-let noHack = function (str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
 
+//Ensuring strings that are passed into textarea are not harmful
+
+let noHack = function (str) {
+  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+};
 
 //CREATE AND RENDER TWEET ELEMENT------------------------------------------------------------------------------
 //Returns HTML text using key value pairs in each individual tweet
@@ -16,7 +16,7 @@ const createTweetElement = function (tweet) {
   return `
   <article>
     <header class ='tweet-header'> 
-      <img src='${tweet.user.avatars}'> 
+      <img class ='log-avatar' src='${tweet.user.avatars}'> 
         <span class="log-username">${tweet.user.name}</span> 
         <span class="handle">${tweet.user.handle}</span> 
     </header>
@@ -27,60 +27,67 @@ const createTweetElement = function (tweet) {
 
     <footer class="tweet-footer">
       <span class="days-ago">${timeago.format(tweet.created_at)}</span> 
-      <i class="fa-solid fa-flag"></i>
-      <i class="fa-solid fa-retweet"></i>
-      <i class="fa-solid fa-heart"></i> 
+      <i id="log-footer-flags" class="fa-solid fa-flag"></i>
+      <i id="log-footer-flags" class="fa-solid fa-retweet"></i>
+      <i id="log-footer-flags" class="fa-solid fa-heart"></i> 
     </footer>
 
   </article>
   `;
 };
 
-//Takes in an array of objects and parses each tweet through the createElement function
+// Takes in an array of objects and parses each tweet through the createElement function
 const renderTweets = function (tweets) {
   $(document).ready(function () {
-    $('.log-container').empty(); //to empty container so its starting with a fresh slate each time
+    $('.log-container').empty(); // To empty container so its starting with a fresh slate each time
     for (let tweet of tweets) {
-      $('.log-container').prepend(createTweetElement(tweet));//Calling createTweetElement against each object in the array and appending the log-container with each html script
+      $('.log-container').prepend(createTweetElement(tweet)); // Prepend for reverse order
     }
   })
 
 }
 
+// Moved this function to be global in an attempt to solve bug that hides scroll button once button is clicked. TBC. 
+const focusTextArea = function () {
+  $('#new-tweet-content').focus();
+  let position = $('.new-tweet').offset().top;
+  let navHeight = $('nav').outerHeight();
+  let headerHeight = $('header').outerHeight();
+  $('html').animate({
+    scrollTop: position - navHeight - headerHeight
+  }, '1000');
+}
 
 //OVERRIDE SUBMIT FORM USING AJAX-----------------------------------------------------------------
 
 $(document).ready(function () {
-  
+
+  // Stretch project for scroll button. Missing logic to hide it when clicked.Keeps registering scroll back up and then redisplaying.
   $('.scroll-top-button').hide();
-  $(window).scroll(function(){
+
+  $(window).scroll(function () {
     $('.scroll-top-button').fadeIn();
   })
-//try exclude with condition this fade in when scroll up button is clicked
-  $('.scroll-top-button, .nav-button').click(function () {
-    $('#tweet-text').focus();
-    let position = $('.new-tweet').offset().top;    
-    let navHeight = $('nav').outerHeight();
-    let headerHeight = $('header').outerHeight();
-    $('html').animate({
-      scrollTop: position - navHeight - headerHeight
-    }, '1000');
-  });
-  $('.scroll-top-button').hide();
-//Might have to create seperate function to fade out button as it is registering the scroll up as a scroll and not hiding after
+
+  $('.nav-button, .scroll-top-button').click(function () {
+    focusTextArea();
+    // Ideally add logic to stop scroll being registered, preventDefault?Conditional?TBC
+  })
+
 
   $('.error').hide();
-  //Sending tweets to server and blocking redirect
+
+  // Sending tweets to server and blocking redirect
   $('.tweet-submission').submit(function (event) {
     event.preventDefault();
 
-    const inputData = $('#tweet-text').val();
+    const inputData = $('#new-tweet-content').val();
     if (inputData === "" || inputData === null) {
       $('.error').slideUp('fast');
       $('.error').html(`<strong>You got nothing to say?</strong>`).slideDown('fast');
     } else if (inputData.length > 140) {
       $('.error').slideUp('fast');
-      $('.error < strong').html(`<strong>Ok now you're saying too much</strong>`).slideDown('fast');
+      $('.error').html(`<strong>Ok now you're saying too much.</strong>`).slideDown('fast');
     } else {
       $('.error').slideUp('fast');
       const form = $(this).serialize();
@@ -89,14 +96,14 @@ $(document).ready(function () {
         method: 'POST',
         data: form,
         success: function () {
-          $('#tweet-text').val('');
-          loadTweets(); //to add the new tweet to the top of the page after clicking submit
+          $('#new-tweet-content').val(''); // Resetting the textarea to clear entered text after submission
+          loadTweets(); // To add the new tweet to the top of the page after clicking submit
         }
       });
     };
   })
 
-  //Fetching the tweets and rendering them when the page is first loaded. Think of this as seperate to the request above.
+  // Fetching the tweets and rendering them when the page is first loaded. Think of this as seperate to the request above.
   const loadTweets = function () {
     $.ajax({
       url: '/tweets',
@@ -104,10 +111,11 @@ $(document).ready(function () {
       dataType: 'json',
     })
       .then(function (tweets) {
-        renderTweets(tweets);
+        renderTweets(tweets); // Accessing and rendering the array of objects to be parsed and displayed
       })
 
   }
-  loadTweets(); //without this, the home page is blank and then when button is pressed all tweets appear
+
+  loadTweets(); // Without this, the home page is blank and then when submit button is pressed all tweets appear at once
 
 })
