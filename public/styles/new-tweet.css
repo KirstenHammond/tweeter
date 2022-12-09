@@ -1,10 +1,58 @@
-/* CSS for submitting a new tweet */
+/*
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ * https://css-tricks.com/international-box-sizing-awareness-day/
+ * Do not modify these two selectors, please
+ */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
-form {
-  display:flex;
-  flex-direction: column;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+* {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+  color: #545149;
+  background-color: #F6F4F1;
+  font-size: 1.5rem;
   width: 100%;
-  padding-top: 1em;
+  padding-bottom: 4rem;
+}
+body .container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 
+ * Responsive design for laptop screens.
+ */
+@media screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  body .container {
+    padding-top: 8.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+/* CSS for submitting a new tweet including submit tweet button and flag,retweet,heart flags*/
+form {
+  width: 100%;
+  padding-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .error {
@@ -13,33 +61,36 @@ form {
   padding: 0.8rem;
 }
 
-#tweet-text {
-  width: 100%;
+#new-tweet-content {
   background-color: #F6F4F1;
-  border: none;
-  border-bottom: 0.2em solid #545149;
+  font-size: 1.3rem;
   font-weight: bold;
-  font-size: 80%;
+  border: none;
+  border-bottom: 0.25rem solid #545149;
   resize: none;
   opacity: 1;
 }
 
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none;
   color: #545149;
 }
 
-.tweet-count-buttons {
+.new-tweet-footer {
   display: flex;
   justify-content: space-between;
-  padding-top: 0.5em;
+  padding-top: 0.7rem;
 }
 
 .counter {
   font-family: "Bungee", sans-serif;
-  font-size: 80%;
+  font-size: 1.3rem;
 }
 
+/* 
+* .negative-count class added using function in composer.js
+*/
 .counter.negative-count {
   color: red;
 }
@@ -48,13 +99,13 @@ textarea:focus, input:focus{
   background-color: #1B3A44;
   color: #F6F4F1;
   font-family: "Bungee", sans-serif;
-  font-size: 80%;
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  font-size: 1.3rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   border: none;
 }
 
-.submit-new-tweet-button:hover{
+.submit-new-tweet-button:hover {
   cursor: pointer;
-  box-shadow: 0.3rem 0.3rem rgb(177, 175, 175);
+  box-shadow: 0.3rem 0.3rem #AFAFB1;
 }

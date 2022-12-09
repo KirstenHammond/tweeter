@@ -5,6 +5,7 @@
  */
 html {
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 *,
@@ -16,112 +17,33 @@ html {
 /*
  * Global layout stuff
  */
-
 * {
-  font-family: 'Source Sans Pro', sans-serif
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 body {
   color: #545149;
   background-color: #F6F4F1;
-  font-size: 24px;
+  font-size: 1.5rem;
   width: 100%;
-  padding-bottom: 5em;
+  padding-bottom: 4rem;
 }
-
-.container {
+body .container {
   width: 90%;
   margin: 0 auto;
 }
 
-.scroll-top-button {
-  position: fixed;
-  color: #F6F4F1;
-  font-size: 1.25rem;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  background-color: #1B3A44;
-}
-
-.scroll-top-button:hover {
-  cursor: pointer;
-}
-
-.scroll-top-button>.fa-solid:hover {
-  color: #e1ad01;
-}
-
-
+/* 
+ * Responsive design for laptop screens.
+ */
 @media screen and (min-width: 1024px) {
   body {
     display: flex;
     flex-direction: row;
   }
-
-  .container {
-    padding-top: 10rem;
-    padding-right: 4rem;
-    padding-left: 4rem;
+  body .container {
+    padding-top: 8.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
-
-/*   img {
-    src: "/Users/kirstenhammond/lighthouse/Focal/tweeter/public/images/profile-hex.png";
-  } */
 }
-
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- for tweets display. check order, use flex reverse if needed
- justify content on the vertical
- align items horizontal
-
- parent (aka container)
- display: flex
- flex directoion: column
- justify content: space around 
- align items center
- flex-wrap: wrap (to wrap excess width to keep items contained in the container)
- align-content: space-around (only use with flex wrap)
-
- children
- to select specific order for indiv items. default value of 0
- order: 1 (will push item to the end because all other have 0 and will come first. -1 will make it first)
- flex-grow: will stretch out indiv items 
-
-
-@media only screen and (max-width: 400px)
-{
-  .top-nav {
-    color: etc;
-    display: none; to make it disappear
-}
-
-.profileavatar image {
-  background-image: replace with scaled down image
-}
- img {
-  picture:
- }
-overflow: 
-}
-
-@media only screen and(min-width:401px) and (max:width: 600px)
-{
-.top-na{
-background-color: pink;
-}
-}
-
-in html
-<picture>
-<source srcset="smaller img url or relative path" media="(max-width:400px)>
-<img src="big img url or relative path">
-</picture>
-
-
- */

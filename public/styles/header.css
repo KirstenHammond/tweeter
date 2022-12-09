@@ -1,21 +1,61 @@
-/* Header - avatar and user name at the top of the page but below the nav bar */
+/*
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ * https://css-tricks.com/international-box-sizing-awareness-day/
+ * Do not modify these two selectors, please
+ */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
-body>header {
-  height: 520px;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+* {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+  color: #545149;
+  background-color: #F6F4F1;
+  font-size: 1.5rem;
+  width: 100%;
+  padding-bottom: 4rem;
+}
+body .container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 
+ * Responsive design for laptop screens.
+ */
+@media screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  body .container {
+    padding-top: 8.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+/* Header - avatar and user name at the top of the page but below the nav bar */
+.user-header {
+  background-color: #F6F4F1;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  font-size: 1.2rem;
+  height: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  background-color: #F6F4F1;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-}
-
-h2 {
-  margin-top: 0px;
-  margin-bottom: 20px;
-}
-
-.username {
-  font-size: 1.2rem;
 }

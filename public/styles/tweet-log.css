@@ -1,70 +1,126 @@
+/*
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ * https://css-tricks.com/international-box-sizing-awareness-day/
+ * Do not modify these two selectors, please
+ */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+* {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+  color: #545149;
+  background-color: #F6F4F1;
+  font-size: 1.5rem;
+  width: 100%;
+  padding-bottom: 4rem;
+}
+body .container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 
+ * Responsive design for laptop screens.
+ */
+@media screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  body .container {
+    padding-top: 8.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
 /* CSS for handling historic tweet logs */
-
 article {
-  border: 0.17em solid #545149;
-  margin-top: 0.5em;
+  border: 0.3rem solid #545149;
+  margin-top: 0.8rem;
 }
 
-article:hover{
-  box-shadow: 0.4em 0.4em rgb(177, 175, 175);
+article:hover {
+  box-shadow: 0.5rem 0.5rem #AFAFB1;
 }
 
+/* 
+ * Header
+ */
 .tweet-header {
+  font-size: 1.2rem;
   width: 95%;
-  margin: 0.5em auto;
+  margin: 0.5rem auto;
   display: flex;
   justify-content: start;
-  
-  font-size: 80%;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
-header > img{
-width: 40px;
+.log-avatar {
+  width: 2.5rem;
 }
 
 .log-username {
   flex-grow: 4;
   align-self: center;
-  padding-left: 0.4em;
+  padding-left: 0.4rem;
 }
 
 .handle {
-  color: rgb(177, 175, 175);
+  color: #AFAFB1;
   align-self: center;
 }
 
+/* 
+ * Content
+ */
 .tweet-content {
-  border-bottom: 0.17em solid #545149;
+  font-size: 1.3rem;
   width: 95%;
+  border-bottom: 0.2rem solid #545149;
   margin: 0 auto;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  font-size: 80%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   overflow-wrap: anywhere;
 }
 
+/* 
+ * Footer
+ */
 .tweet-footer {
+  font-size: 0.9rem;
   width: 95%;
   margin: 0 auto;
-  font-size: 60%;
   display: flex;
   justify-content: start;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .days-ago {
   flex-grow: 0.95;
 }
 
-.fa-solid{
-  padding-left: 0.3em;
-  padding-right: 0.3em;
+#log-footer-flags {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
-.fa-solid:hover {
+#log-footer-flags:hover {
   color: #1B3A44;
   cursor: pointer;
 }

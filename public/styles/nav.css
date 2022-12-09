@@ -1,42 +1,114 @@
-/* Nav CSS for header containing Tweeter logo and "Create New Tweet" prompt */
+/*
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ * https://css-tricks.com/international-box-sizing-awareness-day/
+ * Do not modify these two selectors, please
+ */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+* {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+  color: #545149;
+  background-color: #F6F4F1;
+  font-size: 1.5rem;
+  width: 100%;
+  padding-bottom: 4rem;
+}
+body .container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 
+ * Responsive design for laptop screens.
+ */
+@media screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  body .container {
+    padding-top: 8.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+/* Nav CSS for header containing Tweeter logo, "Create New Tweet" prompt and stretch scroll button */
 nav {
   background-color: #e1ad01;
   color: black;
   height: 120px;
   width: 100%;
-  position:fixed;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  position: fixed;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-nav>span {
+#nav-logo {
   font-family: "Bungee", sans-serif;
-  font-size: 160%;
+  font-size: 2.5rem;
   align-self: end;
-  padding-bottom: 0.8em;
+  padding-bottom: 1.2rem;
 }
 
 .nav-button {
+  background-color: #e1ad01;
+  border: none;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e1ad01;
-  padding-left: 0px;
-  padding-right: 0px;
-  border: none;
 }
 
 .nav-button:hover {
   color: #545149;
-  border: 0.17em solid #545149;
-  box-shadow: 0.4em 0.4em #F6F4F1;
+  border: 0.2rem solid #545149;
+  box-shadow: 0.5rem 0.5rem #F6F4F1;
   cursor: pointer;
 }
 
-.nav-button > .fa-solid {
+#bouncy-arrow {
   color: #1B3A44;
+}
+
+/* 
+ * Stretch button that focus into textarea when user scrolls 
+ */
+.scroll-top-button {
+  background-color: #1B3A44;
+  position: fixed;
+  color: #F6F4F1;
+  font-size: 1.25rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+}
+
+.scroll-top-button:hover {
+  cursor: pointer;
+}
+
+#scroll-top-arrows:hover {
+  color: #e1ad01;
 }
