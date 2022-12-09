@@ -57,13 +57,13 @@
 <body>
   <!-- Top nav bar (fixed) -->
   <nav>
-    <span>tweeter</span>
+    <span id="nav-logo">tweeter</span>
     <button type="button" class="nav-button">
       <span><strong>Write</strong> a new tweet</span>
-      <i class="fa-solid fa-angles-down fa-bounce"
+      <i id="bouncy-arrow" class="fa-solid fa-angles-down fa-bounce"
       style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0;"></i>
     </button>
-    <button type="button" class="scroll-top-button"><i class="fa-solid fa-angles-up"></i></button>
+    <button type="button" class="scroll-top-button"><i id="scroll-top-arrows" class="fa-solid fa-angles-up"></i></button>
   </nav>
 
 
@@ -72,7 +72,6 @@
     <div class="avatar">
       <img src="/images/profile-hex.png">
     </div>
-    <br>
     <div class="username">
       <h2>Kirsten Hammond</h2>
     </div>
@@ -86,9 +85,8 @@
         <strong></strong>
       </div>
       <form class="tweet-submission" method="POST" action="/tweets/">
-        <!-- <label for="tweet-text">What are you humming about?</label>  -->
-        <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
-        <div class="tweet-count-buttons">
+        <textarea name="text" id="new-tweet-content" placeholder="What are you humming about?"></textarea>
+        <div class="new-tweet-footer">
           <button class="submit-new-tweet-button" type="submit">Tweet</button>
           <output name="counter" class="counter" for="tweet-text">
             140
@@ -99,7 +97,7 @@
     </section>
 
     <section class="log-container">
-      <!--Create element brought in from app.js-->
+      <!--Create element brought in from client.js-->
     </section>
 
   </main>
