@@ -1,0 +1,83 @@
+/* CSS for handling historic tweet logs */
+
+@use 'layout';
+
+article {
+  border: 0.3rem solid layout.$grey;
+  margin-top: 0.8rem;
+}
+
+article:hover {
+  box-shadow: 0.5rem 0.5rem layout.$midgrey;
+}
+
+/* 
+ * Header
+ */
+
+.tweet-header {
+  font-size: 1.2rem;
+  width: 95%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: start;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.log-avatar {
+  width: 2.5rem;
+}
+
+.log-username {
+  flex-grow: 4;
+  align-self: center;
+  padding-left: 0.4rem;
+}
+
+.handle {
+  color:layout.$midgrey;
+  align-self: center;
+}
+
+/* 
+ * Content
+ */
+
+.tweet-content {
+  font-size: 1.3rem;
+  width: 95%;
+  border-bottom: 0.2rem solid layout.$grey;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+/* 
+ * Footer
+ */
+
+.tweet-footer {
+  font-size: 0.9rem;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: start;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.days-ago {
+  flex-grow: 0.95;
+}
+
+#log-footer-flags {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+#log-footer-flags:hover {
+  color: layout.$teal;
+  cursor: pointer;
+}

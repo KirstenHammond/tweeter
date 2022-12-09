@@ -1,0 +1,65 @@
+/* CSS for submitting a new tweet including submit tweet button and flag,retweet,heart flags*/
+@use 'layout';
+
+form {
+  width: 100%;
+  padding-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  background-color: layout.$error;
+  font-size: 1.3rem;
+  padding: 0.8rem;
+}
+
+#new-tweet-content {
+  background-color: layout.$dovegrey;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: none;
+  border-bottom: 0.25rem solid layout.$grey;
+  resize: none;
+  opacity: 1;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  color: layout.$grey;
+}
+
+.new-tweet-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.7rem;
+}
+
+.counter {
+  font-family: layout.$bungee;
+  font-size: 1.3rem;
+}
+
+/* 
+* .negative-count class added using function in composer.js
+*/
+
+.counter.negative-count {
+  color: red;
+}
+
+.submit-new-tweet-button {
+  background-color: layout.$teal;
+  color: layout.$dovegrey;
+  font-family: layout.$bungee;
+  font-size: 1.3rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border: none;
+}
+
+.submit-new-tweet-button:hover {
+  cursor: pointer;
+  box-shadow: 0.3rem 0.3rem layout.$midgrey;
+}
