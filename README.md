@@ -2,27 +2,29 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express back-end skills.
+This is an exercise in Front End development, using HTML, CSS, Sass, JS, jQuery and AJAX with some Node and Express back-end manipulation.
+The styling was designed to be responsive to laptop and mobile/tablet screen sizes.
+
+---
+## Final Product
+
+![Main page at 1024px and above](./public/images/laptopNormal.png)
+![Up to 1024px with an error](./public/images/mobiletabletError.png)
+![Main page 1024px and above with an error](./public/images/laptopError.png)
+
+---
 
 ## Getting Started
 
-1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
-2. Clone your repository onto your local device.
-3. Install dependencies using the `npm install` command.
+1. Clone this repository onto your local device.
+2. Install dependencies using the `npm install` command.
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
 4. Go to <http://localhost:8080/> in your browser.
+5. Submit tweets and see them display immediately. 
 
-## Dependencies
+---
 
-- Express
-- Node 5.10.x or above
+### Acknowledgements
 
-To do
-text contained on resizing
--em to rem
--use id for unique features
--add notes
--stretch improve logic for scroll show hide
--dry up js code
--readme
 
+The server side logic was provided by LightHouse Labs. The master branch can be found [here](https://github.com/lighthouse-labs/tweeter).
