@@ -5,6 +5,9 @@
   <!-- Meta Information -->
   <title>Tweeter - Home Page</title>
 
+  <!-- Disabling viewport zooming-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+
   <!-- External CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     type="text/css" />
@@ -12,11 +15,10 @@
   <!-- Source Sans Pro 300 + 600 + italics in both and Bungee 400 Google Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
     rel="stylesheet">
 
-  <!-- App CSS -->
+  <!-- Layout CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <!-- Nav CSS -->
@@ -59,13 +61,14 @@
     <button type="button" class="nav-button">
       <span><strong>Write</strong> a new tweet</span>
       <i class="fa-solid fa-angles-down fa-bounce"
-        style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0;"></i>
+      style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0;"></i>
     </button>
+    <button type="button" class="scroll-top-button"><i class="fa-solid fa-angles-up"></i></button>
   </nav>
 
 
   <!-- User avatar/header-->
-<header>
+<header class ="user-header">
     <div class="avatar">
       <img src="/images/profile-hex.png">
     </div>
@@ -75,7 +78,6 @@
     </div>
   </header>
 
-<button type="button" class="scroll-top-button"><i class="fa-solid fa-angles-up"></i></button>
 
   <!-- Page-specific (main) content here -->
   <main class="container">
@@ -97,20 +99,7 @@
     </section>
 
     <section class="log-container">
-      <!-- <article>
-        <header class="tweet-header">
-          <img src="https://i.imgur.com/nlhLi3I.png">
-          <span class="log-username">Rhoda Jacobs</span>
-          <span class="handle">@MrsJacobs</span>
-        </header>
-        <main class="tweet-content">
-          <strong>Hello World!</strong>
-        </main>
-        <footer class="tweet-footer">
-          <span class="days-ago">10 days ago</span>
-          <i class="fa-solid fa-flag"></i><i class="fa-solid fa-retweet"></i><i class="fa-solid fa-heart"></i>
-        </footer>
-      </article> -->
+      <!--Create element brought in from app.js-->
     </section>
 
   </main>
