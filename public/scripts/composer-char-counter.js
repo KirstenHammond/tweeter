@@ -1,28 +1,33 @@
-//For implementing character count in new tweet submission
+//Character count helper function
 
 $(document).ready(function () {
-  const maxLength = 140;
 
-  //Find the length of the input
-  $('#new-tweet-content').keyup(function () {
-    let currentLength = $(this).val().length;
-    let remaining = maxLength - currentLength;
+  $('#new-tweet-content').on('input', onInput);
 
-    //Traverse up and then back down to find .counter
-    let $parent = $(this).parent();
-    let counter = $parent.find('.counter');
-    counter.each(function () {
-      //Update the counter for each keyup
-      $(this).html(remaining);
-
-      //Negative-count has red styling, so the class is removed if the number is positive
-      if ($(this).html() < 0) {
-        $(this).addClass('negative-count');
-      } else {
-        $(this).removeClass('negative-count')
-      }
-    })
-  })
-  return;
 });
 
+/**
+ * On text input, updates the character counter. Add/removes classes which turns text black/red based on counter in relation to 140.
+ * @param {*} event The key pressed
+ * @returns An updated value based on input length
+ */
+const onInput = function (event) {
+
+  let $input = $(this);
+  let currentLength = $input.val().length;
+  let remaining = 140 - currentLength;
+
+  //Traverse up and then back down to find .counter
+  let $parent = $input.parent();
+  let $counter = $parent.find('.counter');
+  $counter.each(function () {
+    $counter.text(remaining);
+
+    if (remaining < 0) {
+      $counter.addClass('negative-count');
+    } else {
+      $counter.removeClass('negative-count')
+    }
+  })
+  return;
+};
