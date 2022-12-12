@@ -1,18 +1,43 @@
 /*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
+* Client side Javascript
+*/
+
+$(document).ready(function() {
+
+  $('.tweet-submission').on('submit', postTweets);
+  loadTweets();
+
+  // Stretch project for scroll button. Missing logic to hide it when clicked.Keeps registering scroll back up and then redisplaying.
+  $('.scroll-top-button, .error').hide();
+  $('.nav-button, .scroll-top-button').on('click', focusTextArea);
+
+  // Ideally add logic to stop scroll being registered, preventDefault?Conditional?TBC
+  $(window).on('scroll', function() {
+    $('.scroll-top-button').fadeIn();
+  });
+
+  if ($('.new-tweet').is(':visible')) {
+    $('#new-tweet-content').focus();
+  }
+
+});
+
+//HELPER FUNCTIONS----------------------------------------------------------------------------------------------------------------------------
+/**
+ * Prevents cross site scripting
+ * @param {*} str The content being submitted
+ * @returns A string that allows the tweet to be submitted without consequence
  */
-
-//Ensuring strings that are passed into textarea are not harmful
-
-let noHack = function (str) {
+let crossSiteScripting = function(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 };
 
-//CREATE AND RENDER TWEET ELEMENT------------------------------------------------------------------------------
-//Returns HTML text using key value pairs in each individual tweet
-const createTweetElement = function (tweet) {
+/**
+ * Returns HTML text using key value pairs to populate each individual tweet in the log
+ * @param {*} tweet The tweet object
+ * @returns HTML text to be inserted into the HTML article
+ */
+const createTweetElement = function(tweet) {
   return `
   <article>
     <header class ='tweet-header'> 
@@ -22,7 +47,7 @@ const createTweetElement = function (tweet) {
     </header>
     
     <main class="tweet-content">
-      <strong>${noHack(tweet.content.text)}</strong>
+      <strong>${crossSiteScripting(tweet.content.text)}</strong>
     </main>
 
     <footer class="tweet-footer">
@@ -36,19 +61,69 @@ const createTweetElement = function (tweet) {
   `;
 };
 
-// Takes in an array of objects and parses each tweet through the createElement function
-const renderTweets = function (tweets) {
-  $(document).ready(function () {
-    $('.log-container').empty(); // To empty container so its starting with a fresh slate each time
-    for (let tweet of tweets) {
-      $('.log-container').prepend(createTweetElement(tweet)); // Prepend for reverse order
-    }
-  })
 
-}
+/**
+ * Takes in an array of objects and parses each tweet through the createElement function
+ * @param {*} tweets The array of tweet objects
+ */
+const renderTweets = function(tweets) {
+  const $container = $('.log-container');
+  $container.empty(); // To empty container so its starting with a fresh slate each time
+  for (let tweet of tweets) {
+    $container.prepend(createTweetElement(tweet)); // Prepend for reverse order
+  }
+};
 
-// Moved this function to be global in an attempt to solve bug that hides scroll button once button is clicked. TBC. 
-const focusTextArea = function () {
+
+/**
+ * Sending tweets to server and blocking redirect
+ * @param {*} event In this case, on Click
+ */
+const postTweets = function(event) {
+  event.preventDefault();
+
+  const inputData = $('#new-tweet-content').val();
+  if (inputData === "" || inputData === null) {
+    $('.error').slideUp('fast');
+    $('.error').html(`<strong>You got nothing to say?</strong>`).slideDown('fast');
+  } else if (inputData.length > 140) {
+    $('.error').slideUp('fast');
+    $('.error').html(`<strong>Ok now you're saying too much.</strong>`).slideDown('fast');
+  } else {
+    $('.error').slideUp('fast');
+    const form = $(this).serialize();
+    $.post('/tweets', form)
+      .then(() => {
+        $('#new-tweet-content').val('');
+        $('.counter').html('140');
+        loadTweets(); // To add the new tweet to the top of the page after clicking submit
+      })
+      .catch((e) => {
+        $('.error').slideUp('fast');
+        $('.error').html(`<strong>Server POST Error: ${e}.</strong>`).slideDown('fast');
+      });
+  }
+};
+
+/**
+ * loadTweets shows all tweets when home page is loaded. Called in document ready below
+ */
+const loadTweets = function() {
+  $.get('/tweets')
+    .then(tweets => {
+      renderTweets(tweets); // Accessing and rendering the array of objects to be parsed and displayed
+    })
+    .catch((e) => {
+      $('.error').slideUp('fast');
+      $('.error').html(`<strong>Server GET Error: ${e}.</strong>`).slideDown('fast');
+    });
+};
+
+
+/**
+ * STRETCH -Current bug that hides scroll button once button is clicked. TBC.
+ */
+const focusTextArea = function() {
   $('#new-tweet-content').focus();
   let position = $('.new-tweet').offset().top;
   let navHeight = $('nav').outerHeight();
@@ -56,66 +131,9 @@ const focusTextArea = function () {
   $('html').animate({
     scrollTop: position - navHeight - headerHeight
   }, '1000');
-}
-
-//OVERRIDE SUBMIT FORM USING AJAX-----------------------------------------------------------------
-
-$(document).ready(function () {
-
-  // Stretch project for scroll button. Missing logic to hide it when clicked.Keeps registering scroll back up and then redisplaying.
-  $('.scroll-top-button').hide();
-
-  $(window).scroll(function () {
-    $('.scroll-top-button').fadeIn();
-  })
-
-  $('.nav-button, .scroll-top-button').click(function () {
-    focusTextArea();
-    // Ideally add logic to stop scroll being registered, preventDefault?Conditional?TBC
-  })
+};
 
 
-  $('.error').hide();
 
-  // Sending tweets to server and blocking redirect
-  $('.tweet-submission').submit(function (event) {
-    event.preventDefault();
 
-    const inputData = $('#new-tweet-content').val();
-    if (inputData === "" || inputData === null) {
-      $('.error').slideUp('fast');
-      $('.error').html(`<strong>You got nothing to say?</strong>`).slideDown('fast');
-    } else if (inputData.length > 140) {
-      $('.error').slideUp('fast');
-      $('.error').html(`<strong>Ok now you're saying too much.</strong>`).slideDown('fast');
-    } else {
-      $('.error').slideUp('fast');
-      const form = $(this).serialize();
-      $.ajax({
-        url: '/tweets',
-        method: 'POST',
-        data: form,
-        success: function () {
-          $('#new-tweet-content').val(''); // Resetting the textarea to clear entered text after submission
-          loadTweets(); // To add the new tweet to the top of the page after clicking submit
-        }
-      });
-    };
-  })
 
-  // Fetching the tweets and rendering them when the page is first loaded. Think of this as seperate to the request above.
-  const loadTweets = function () {
-    $.ajax({
-      url: '/tweets',
-      method: 'GET',
-      dataType: 'json',
-    })
-      .then(function (tweets) {
-        renderTweets(tweets); // Accessing and rendering the array of objects to be parsed and displayed
-      })
-
-  }
-
-  loadTweets(); // Without this, the home page is blank and then when submit button is pressed all tweets appear at once
-
-})
